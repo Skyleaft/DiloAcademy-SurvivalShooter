@@ -6,7 +6,10 @@ public class Medkit : MonoBehaviour
 {
     [SerializeField] private float rotatespeed = 50f;
     [SerializeField] private int healthBonus;
+    [SerializeField] private AudioClip sfx;
+
     private PlayerHealth player;
+    private AudioSource audioPlayer;
 
     void Update()
     {
@@ -21,16 +24,19 @@ public class Medkit : MonoBehaviour
         {
             //ambil value darah dari tag player
             player = other.gameObject.GetComponent<PlayerHealth>();
+            audioPlayer = ItemManager.Instance.gameObject.GetComponent<AudioSource>();
         }
         //jika kena player
         if (other.gameObject.tag == "PlayerCollider")
         {
+            audioPlayer.clip = sfx;
+            audioPlayer.Play();
             //tambah 10 health
             if (player.currentHealth <= 100)
             {
                 player.currentHealth += healthBonus;
             }
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
 }

@@ -48,6 +48,7 @@ MonoBehaviour:
   rotatespeed: 80
   speedBonus: 11
   boostDuration: 10
+  sfx: {fileID: 8300000, guid: 6554bfe30ae6e654eaeb76c09e4a4aaa, type: 3}
 --- !u!1 &4212889961928418279
 GameObject:
   m_ObjectHideFlags: 0

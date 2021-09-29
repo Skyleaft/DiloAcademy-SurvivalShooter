@@ -8,8 +8,10 @@ public class Adrenaline : MonoBehaviour
     [SerializeField] private float rotatespeed = 80f;
     [SerializeField] private float speedBonus;
     [SerializeField] private float boostDuration;
+    [SerializeField] private AudioClip sfx;
 
     private PlayerMovement player;
+    private AudioSource audioPlayer;
 
 
     void Update()
@@ -26,13 +28,16 @@ public class Adrenaline : MonoBehaviour
         {
             //ambil component player move
             player = other.gameObject.GetComponent<PlayerMovement>();
+            audioPlayer = ItemManager.Instance.gameObject.GetComponent<AudioSource>();
         }
         //jika kena player
         if (other.gameObject.tag == "PlayerCollider")
         {
+            audioPlayer.clip = sfx;
+            audioPlayer.Play();
             player.adrenalineDuration += boostDuration;
             player.speedboost = speedBonus;
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
 
     }

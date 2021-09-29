@@ -216,6 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotatespeed: 80
   healthBonus: 5
+  sfx: {fileID: 8300000, guid: b74b538e2e90c0749aa3da3e4e4517f2, type: 3}
 --- !u!1 &7518286785058246013
 GameObject:
   m_ObjectHideFlags: 0

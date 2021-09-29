@@ -4,12 +4,13 @@ using UnityEngine.UI;
 
 public class GameOverManager : MonoBehaviour
 {
-    public PlayerHealth playerHealth;       
+    public PlayerHealth playerHealth;
     public float restartDelay = 5f;
     public Text warningText;
+    public AudioSource Audio;
 
-    Animator anim;                          
-    float restartTimer;                    
+    Animator anim;
+    float restartTimer;
 
 
     void Awake()
@@ -22,6 +23,7 @@ public class GameOverManager : MonoBehaviour
     {
         if (playerHealth.currentHealth <= 0)
         {
+            Audio.Stop();
             anim.SetTrigger("GameOver");
 
             restartTimer += Time.deltaTime;
