@@ -1,13 +1,20 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 6f;
+    [SerializeField] private float InitSpeed = 5f;
+    [SerializeField] private Text BonusText;
+    private float speed = 5f;
+    public float speedboost;
     Vector3 movement;
     Animator anim;
     Rigidbody playerRigidbody;
     int floorMask;
     float camRayLength = 100f;
+
+    public float adrenalineDuration;
+    float timer;
 
     private void Awake()
     {
@@ -19,6 +26,23 @@ public class PlayerMovement : MonoBehaviour
 
         //Mendapatkan komponen Rigidbody
         playerRigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        //jika durasi adrenaline masih ada maka tambah kecepatan
+        if(adrenalineDuration >= 0)
+        {
+            speed = speedboost;
+            //tampilkan ui durasi nya
+            BonusText.text = adrenalineDuration.ToString("F2");
+            adrenalineDuration -= Time.deltaTime;
+        }
+        else
+        {
+            BonusText.text = "";
+            speed = InitSpeed;
+        }
     }
 
     private void FixedUpdate()
@@ -70,6 +94,8 @@ public class PlayerMovement : MonoBehaviour
             playerRigidbody.MoveRotation(newRotation);
         }
     }
+
+
 
     public void Animating(float h, float v)
     {

@@ -17,8 +17,8 @@ public class PlayerHealth : MonoBehaviour
     AudioSource playerAudio;
     PlayerMovement playerMovement;
     PlayerShooting playerShooting;
-    bool isDead;                                                
-    bool damaged;                                               
+    bool isDead;
+    bool damaged;
 
 
     void Awake()
@@ -44,6 +44,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         damaged = false;
+        healthSlider.value = currentHealth;
     }
 
 
